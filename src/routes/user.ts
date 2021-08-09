@@ -6,8 +6,8 @@ const userRouter = Router();
 
 userRouter.get("/api/user", async (req: Request, res: Response) => {
   const repository = getMongoRepository(User);
-  const returnGet = await repository.find();
-  return res.json(returnGet);
+  const userToRead = await repository.find();
+  return res.json(userToRead);
 });
 
 userRouter.post("/api/user", async (req: Request, res: Response) => {
