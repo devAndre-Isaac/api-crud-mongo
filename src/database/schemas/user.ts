@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 
 @Entity()
-export class User {
+class User {
   @ObjectIdColumn()
   _id: ObjectID;
 
