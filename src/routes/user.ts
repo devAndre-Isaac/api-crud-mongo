@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import { getMongoRepository } from "typeorm";
 import User from "../database/schemas/user";
+import { getValidData } from "../validation/validatorHandle";
 
 const userRouter = Router();
 
@@ -17,6 +18,14 @@ userRouter.post("/api/user", async (req: Request, res: Response) => {
   const user = await repository.save(userToSave);
 
   return res.status(201).json(user);
+});
+
+userRouter.delete("/api/user/:_id", async (req: Request, res: Response) => {
+  const repository = getMongoRepository(User);
+  const { params } = getValidData(req);
+  const userToRemove = repository.delete(params.id);
+  const user = repository.deleteOne(userToRemove)
+  return res.status(204).json(user);
 });
 
 export { userRouter };
