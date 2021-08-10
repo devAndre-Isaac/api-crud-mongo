@@ -15,6 +15,7 @@
     "@types/express": "^4.17.13",
     "@types/mongodb": "^4.0.7",
     "express": "^4.17.1",
+    "express-validator": "^6.12.1",
     "mongodb": "3",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.2.36"
