@@ -8,7 +8,7 @@ import {
   } from "typeorm";
   
   @Entity()
-  class User {
+  class Company {
     @ObjectIdColumn()
     _id: ObjectID;
   
@@ -28,4 +28,4 @@ import {
     updated_at: Date;
   }
   
-  export default User;
+  export default Company;
