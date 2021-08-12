@@ -7,7 +7,7 @@ const companyRouter = Router();
 
 companyRouter.get("/api/company", async (req: Request, res: Response) => {
   const repository = getMongoRepository(Company);
-  const companyToRead = await repository.find();
+  const companyToRead = await repository.findAndCount();
   return res.json(companyToRead);
 });
 
