@@ -13,11 +13,9 @@ companyRouter.get("/api/company", async (req: Request, res: Response) => {
 
 companyRouter.post("/api/company", async (req: Request, res: Response) => {
   const repository = getMongoRepository(Company);
-  const companyToCreate =  repository.create(req.body);
+  const companyToCreate = repository.create(req.body);
   const company = await repository.save(companyToCreate);
   return res.status(201).json(company);
 });
 
-
-
-export {companyRouter}
+export { companyRouter };
