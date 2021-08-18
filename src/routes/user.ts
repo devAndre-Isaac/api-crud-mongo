@@ -6,6 +6,10 @@ import { getValidData } from "../validation/validatorHandle";
 const userRouter = Router();
 
 userRouter.get("/api/user", async (req: Request, res: Response) => {
+  const { header } = req.headers
+  if(header === undefined){
+    return res.sendStatus(400)
+  } 
   const repository = getMongoRepository(User);
   const userToRead = await repository.findAndCount();
   return res.json(userToRead);
