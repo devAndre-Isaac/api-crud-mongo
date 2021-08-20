@@ -21,6 +21,9 @@ class User {
   @Column()
   cpf: string;
 
+  @Column()
+  password: string;
+
   @CreateDateColumn()
   created_at: Date;
 
