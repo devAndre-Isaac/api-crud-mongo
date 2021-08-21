@@ -17,7 +17,11 @@ userRouter.get("/api/user", async (req: Request, res: Response) => {
 
 userRouter.post("/api/user", async (req: Request, res: Response) => {
   const repository = getMongoRepository(User);
-
+  const { email, cpf } = req.body;
+  const userExists = await repository.findOne({ where: { email, cpf } });
+  if (userExists) {
+    return res.sendStatus(409);
+  }
   const userToSave = repository.create(req.body);
   const user = await repository.save(userToSave);
 
