@@ -15,6 +15,15 @@ class UserController {
 
     return res.status(201).json(user);
   }
+  async read(req: Request, res: Response){
+    const { header } = req.headers;
+    if (header === undefined) {
+      return res.sendStatus(400);
+    }
+    const repository = getMongoRepository(User);
+    const userToRead = await repository.findAndCount();
+    return res.json(userToRead);
+  }
 }
 
 export default new UserController();
