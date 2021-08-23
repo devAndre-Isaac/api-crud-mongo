@@ -1,7 +1,5 @@
-import { Router, Request, Response } from "express";
-import { getMongoRepository } from "typeorm";
-import User from "../database/schemas/user";
-import { getValidData } from "../validation/validatorHandle";
+import { Router } from "express";
+
 import UserController from "../controllers/UserController";
 
 const userRouter = Router();
