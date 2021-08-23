@@ -1,7 +1,8 @@
 import { Router, Request, Response } from "express";
-import { Any, getMongoRepository } from "typeorm";
+import { getMongoRepository } from "typeorm";
 import User from "../database/schemas/user";
 import { getValidData } from "../validation/validatorHandle";
+import UserController from "../controllers/UserController"
 
 const userRouter = Router();
 
@@ -15,18 +16,7 @@ userRouter.get("/api/user", async (req: Request, res: Response) => {
   return res.json(userToRead);
 });
 
-userRouter.post("/api/user", async (req: Request, res: Response) => {
-  const repository = getMongoRepository(User);
-  const { email, cpf } = req.body;
-  const userExists = await repository.findOne({ where: { email, cpf } });
-  if (userExists) {
-    return res.json(400);
-  }
-  const userToSave = repository.create(req.body);
-  const user = await repository.save(userToSave);
-
-  return res.status(201).json(user);
-});
+userRouter.post("/api/user", UserController.store);
 
 userRouter.delete("/api/user/:_id", async (req: Request, res: Response) => {
   const repository = getMongoRepository(User);
