@@ -10,12 +10,6 @@ userRouter.get("/api/user", UserController.read);
 
 userRouter.post("/api/user", UserController.store);
 
-userRouter.delete("/api/user/:_id", async (req: Request, res: Response) => {
-  const repository = getMongoRepository(User);
-  const { params } = getValidData(req);
-  const userToRemove = repository.delete(params.id);
-  const user = repository.deleteOne(userToRemove);
-  return res.status(204).json(user);
-});
+userRouter.delete("/api/user/:_id", UserController.remove);
 
 export { userRouter };
