@@ -1,5 +1,5 @@
 import { Router, Request, Response } from "express";
-import { getMongoRepository } from "typeorm";
+import { Any, getMongoRepository } from "typeorm";
 import User from "../database/schemas/user";
 import { getValidData } from "../validation/validatorHandle";
 
@@ -20,8 +20,7 @@ userRouter.post("/api/user", async (req: Request, res: Response) => {
   const { email, cpf } = req.body;
   const userExists = await repository.findOne({ where: { email, cpf } });
   if (userExists) {
-    return res.sendStatus(409);
-  }
+    return res.json(400)}
   const userToSave = repository.create(req.body);
   const user = await repository.save(userToSave);
 
