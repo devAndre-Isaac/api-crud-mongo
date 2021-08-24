@@ -1,19 +1,12 @@
 import { Router, Request, Response, response } from "express";
 import { getMongoRepository } from "typeorm";
+import CompanyControlller from "../controllers/CompanyControlller";
 import Company from "../database/schemas/company";
 import { getValidData } from "../validation/validatorHandle";
 
 const companyRouter = Router();
 
-companyRouter.get("/api/company", async (req: Request, res: Response) => {
-  const { header } = req.headers;
-  if (header === undefined) {
-    return response.sendStatus(400);
-  }
-  const repository = getMongoRepository(Company);
-  const companyToRead = await repository.findAndCount();
-  return res.json(companyToRead);
-});
+companyRouter.get("/api/company", CompanyControlller.read);
 
 companyRouter.post("/api/company", async (req: Request, res: Response) => {
   const repository = getMongoRepository(Company);
