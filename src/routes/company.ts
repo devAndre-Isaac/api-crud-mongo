@@ -1,8 +1,5 @@
-import { Router, Request, Response, response } from "express";
-import { getMongoRepository } from "typeorm";
+import { Router } from "express";
 import CompanyControlller from "../controllers/CompanyControlller";
-import Company from "../database/schemas/company";
-import { getValidData } from "../validation/validatorHandle";
 
 const companyRouter = Router();
 
