@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { getMongoRepository } from "typeorm";
 
 import Company from "../database/schemas/company";
+import { getValidData } from "../validation/validatorHandle";
 
 class CompanyController {
   async read(req: Request, res: Response) {
@@ -13,7 +14,7 @@ class CompanyController {
     const companyToRead = await repository.findAndCount();
     return res.json(companyToRead);
   }
-  async store(req: Request, res: Response){
+  async store(req: Request, res: Response) {
     const repository = getMongoRepository(Company);
     const { cnpj } = req.body;
     const companyExists = await repository.findOne({ where: { cnpj } });
@@ -23,6 +24,13 @@ class CompanyController {
     const companyToCreate = repository.create(req.body);
     const company = await repository.save(companyToCreate);
     return res.status(201).json(company);
+  }
+  async remove(req: Request, res: Response) {
+    const repository = getMongoRepository(Company);
+    const { params } = getValidData(req);
+    const companyToRemove = repository.delete(params.id);
+    const company = repository.deleteOne(companyToRemove);
+    return res.status(204).json(company);
   }
 }
 
