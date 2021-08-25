@@ -16,10 +16,12 @@ class AuthController {
     if (!validPassword) {
       return res.sendStatus(401);
     }
-    const token = jwt.sign({ id: validUser._id }, "secret", { expiresIn: "1d" });
+    const token = jwt.sign({ id: validUser._id }, "secret", {
+      expiresIn: "1d",
+    });
     delete validUser.password;
     return res.json({ validUser, token });
   }
 }
 
-export default new AuthController()
+export default new AuthController();
