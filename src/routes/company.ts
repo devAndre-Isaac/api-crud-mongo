@@ -3,10 +3,10 @@ import CompanyControlller from "../controllers/CompanyControlller";
 
 const companyRouter = Router();
 
-companyRouter.get("/api/company", CompanyControlller.read);
+companyRouter.get("/read/company", CompanyControlller.read);
 
-companyRouter.post("/api/company", CompanyControlller.store);
+companyRouter.post("/create/company", CompanyControlller.store);
 
-companyRouter.delete("/api/user/:_id", CompanyControlller.remove);
+companyRouter.delete("/remove/user/:_id", CompanyControlller.remove);
 
 export { companyRouter };
