@@ -6,7 +6,9 @@ import { companyRouter } from "./routes/company";
 import authRouter from "./routes/auth";
 
 const app = express();
+
 app.use(express.json());
+
 app.use(userRouter, companyRouter, authRouter);
 
 app.listen(3333, () => {
