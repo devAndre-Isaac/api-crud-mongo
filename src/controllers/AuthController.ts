@@ -23,6 +23,24 @@ class AuthController {
     delete validUser.password;
     return res.json({ validUser, token });
   }
+  async authCompany(req: Request, res: Response) {
+    const repository =  getMongoRepository(Company)
+    const { cnpj, password } = req.body
+    const validCompany = await repository.findOne({where: { cnpj }})
+    if(!validCompany){
+      return res.sendStatus(401)
+    }
+    const validPassword = await bcrypt.compare(password, validCompany.password);
+    if (!validPassword) {
+      return res.sendStatus(401);
+    }
+    const token = jwt.sign({ id: validCompany._id }, "secret", {
+      expiresIn: "1d",
+    });
+    delete validCompany.password;
+    return res.json({ validCompany, token });
+  }
+  }
 }
 
 export default new AuthController();
