@@ -3,9 +3,10 @@ import { getMongoRepository } from "typeorm";
 import bcrypt from "bcryptjs";
 import User from "../database/schemas/user";
 import jwt from "jsonwebtoken";
+import Company from "../database/schemas/company";
 
 class AuthController {
-  async auth(req: Request, res: Response) {
+  async authUser(req: Request, res: Response) {
     const repository = getMongoRepository(User);
     const { email, password } = req.body;
     const validUser = await repository.findOne({ where: { email } });
