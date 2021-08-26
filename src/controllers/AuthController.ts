@@ -24,11 +24,11 @@ class AuthController {
     return res.json({ validUser, token });
   }
   async authCompany(req: Request, res: Response) {
-    const repository =  getMongoRepository(Company)
-    const { cnpj, password } = req.body
-    const validCompany = await repository.findOne({where: { cnpj }})
-    if(!validCompany){
-      return res.sendStatus(401)
+    const repository = getMongoRepository(Company);
+    const { cnpj, password } = req.body;
+    const validCompany = await repository.findOne({ where: { cnpj } });
+    if (!validCompany) {
+      return res.sendStatus(401);
     }
     const validPassword = await bcrypt.compare(password, validCompany.password);
     if (!validPassword) {
@@ -39,7 +39,6 @@ class AuthController {
     });
     delete validCompany.password;
     return res.json({ validCompany, token });
-  }
   }
 }
 
