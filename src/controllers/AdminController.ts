@@ -6,7 +6,7 @@ class AdminController {
   async readUser(req: Request, res: Response) {
     const repository = getMongoRepository(User);
     const userGetAll = await repository.findAndCount();
-    return res.json({users: userGetAll});
+    return res.json({ users: userGetAll });
   }
 }
 
