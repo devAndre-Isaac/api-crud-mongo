@@ -5,15 +5,6 @@ import Company from "../database/schemas/company";
 import { getValidData } from "../validation/validatorHandle";
 
 class CompanyController {
-  async read(req: Request, res: Response) {
-    const { header } = req.headers;
-    if (header === undefined) {
-      return res.sendStatus(400);
-    }
-    const repository = getMongoRepository(Company);
-    const companyToRead = await repository.findAndCount();
-    return res.json(companyToRead);
-  }
   async store(req: Request, res: Response) {
     const repository = getMongoRepository(Company);
     const { cnpj } = req.body;
