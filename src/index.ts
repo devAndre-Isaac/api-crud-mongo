@@ -3,7 +3,7 @@ import express from "express";
 import "./database/connection";
 import { userRouter } from "./routes/user";
 import { companyRouter } from "./routes/company";
-import authRouter from "./routes/auth";
+import { authRouter } from "./routes/auth";
 import { adminRouter } from "./routes/admin";
 
 const app = express();
