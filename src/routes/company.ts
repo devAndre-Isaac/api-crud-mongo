@@ -3,8 +3,8 @@ import CompanyControlller from "../controllers/CompanyControlller";
 
 const companyRouter = Router();
 
-companyRouter.post("/create/company", CompanyControlller.store);
+companyRouter.post("/api/create/company", CompanyControlller.store);
 
-companyRouter.delete("/remove/user/:_id", CompanyControlller.remove);
+companyRouter.delete("/api/remove/user/:_id", CompanyControlller.remove);
 
 export { companyRouter };
