@@ -7,7 +7,7 @@ class AdminController {
   async readUser(req: Request, res: Response) {
     const { form } = req.headers;
     if (form === undefined) {
-      return res.send("insert form in header");
+      return res.send("Insert Form in header");
     }
     const repository = getMongoRepository(User);
     const userGetAll = await repository.findAndCount();
@@ -16,7 +16,7 @@ class AdminController {
   async readCompany(req: Request, res: Response) {
     const { form } = req.headers;
     if (form === undefined) {
-      return res.send("insert form in header");
+      return res.send("Insert Form in header");
     }
     const repository = getMongoRepository(Company);
     const companyGetAll = await repository.findAndCount();
