@@ -30,10 +30,11 @@ class UserController {
     const idExists = await repository.findOne(_id);
     if (!idExists) {
       return res.send({ Message: "Identification does not exist" });
+    } else {
+      const userToUpdate = await repository.update(_id, req.body);
+      const userUpdated = await repository.save(userToUpdate as any);
+      return res.status(200).json(userUpdated);
     }
-    const userToUpdate = await repository.update(_id, req.body);
-    const userUpdated = repository.save(userToUpdate as any);
-    return res.status(200).json(userUpdated);
   }
 }
 
