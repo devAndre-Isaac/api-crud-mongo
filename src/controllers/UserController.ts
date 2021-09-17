@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getMongoRepository } from "typeorm";
+import { getMongoRepository, ObjectID } from "typeorm";
 
 import { getValidData } from "../validation/validatorHandle";
 import User from "../database/schemas/user";
@@ -23,6 +23,17 @@ class UserController {
     const userToRemove = repository.delete(params.id);
     const user = repository.deleteOne(userToRemove);
     return res.status(204).json(user);
+  }
+  async update(req: Request, res: Response) {
+    const repository = getMongoRepository(User);
+    const { _id } = req.params;
+    const idExists = await repository.findOne(_id);
+    if (!idExists) {
+      return res.send({ Message: "Identification does not exist" });
+    }
+    const userToUpdate = await repository.update(_id, req.body);
+    const userUpdated = repository.save(userToUpdate as any);
+    return res.status(200).json(userUpdated);
   }
 }
 
