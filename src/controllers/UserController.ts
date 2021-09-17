@@ -22,7 +22,7 @@ class UserController {
     const { params } = getValidData(req);
     const userToRemove = repository.delete(params.id);
     const user = repository.deleteOne(userToRemove);
-    return res.status(204).json(user);
+    return res.status(200).json(user);
   }
   async update(req: Request, res: Response) {
     const repository = getMongoRepository(User);
