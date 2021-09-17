@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getMongoRepository, ObjectID } from "typeorm";
+import { getMongoRepository } from "typeorm";
 
 import { getValidData } from "../validation/validatorHandle";
 import User from "../database/schemas/user";
