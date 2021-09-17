@@ -10,7 +10,6 @@ companyRouter.post(
   CompanyControlller.store
 );
 companyRouter.delete("/api/update/user/:_id", CompanyControlller.update);
-
 companyRouter.delete("/api/remove/user/:_id", CompanyControlller.remove);
 
 export { companyRouter };
