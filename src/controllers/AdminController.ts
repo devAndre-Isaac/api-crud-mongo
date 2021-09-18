@@ -5,22 +5,14 @@ import User from "../database/schemas/user";
 
 class AdminController {
   async readUser(req: Request, res: Response) {
-    const { form } = req.headers;
-    if (form === undefined) {
-      return res.send("Insert Form in header");
-    }
     const repository = getMongoRepository(User);
     const userGetAll = await repository.findAndCount();
-    return res.json({ users: userGetAll, form });
+    return res.json({ Users: userGetAll });
   }
   async readCompany(req: Request, res: Response) {
-    const { form } = req.headers;
-    if (form === undefined) {
-      return res.send("Insert Form in header");
-    }
     const repository = getMongoRepository(Company);
     const companyGetAll = await repository.findAndCount();
-    return res.json({ companies: companyGetAll, form });
+    return res.json({ Companies: companyGetAll });
   }
 }
 
