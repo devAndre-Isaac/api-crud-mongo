@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import express from "express";
 import "./database/connection";
-import { userRouter } from "./routes/user";
-import { companyRouter } from "./routes/company";
-import { authRouter } from "./routes/auth";
-import { adminRouter } from "./routes/admin";
+import { userRouter } from "./routes/user.routes";
+import { companyRouter } from "./routes/company.routes";
+import { authRouter } from "./routes/auth.routes";
+import { adminRouter } from "./routes/admin.routes";
 
 const app = express();
 
