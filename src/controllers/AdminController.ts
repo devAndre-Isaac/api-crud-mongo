@@ -25,6 +25,16 @@ class AdminController {
     const companyGetAll = await repository.findAndCount();
     return res.json({ Companies: companyGetAll });
   }
+  async readCompanyById(req: Request, res: Response) {
+    const repositoryId = getMongoRepository(Company);
+    const { _id } = req.params;
+    const idReturn = await repositoryId.findOne(_id);
+    if (!idReturn) {
+      return res.send({ Message: "Identification does not exist" });
+    }
+    return res.json(idReturn);
+  }
+
 }
 
 export default new AdminController();
