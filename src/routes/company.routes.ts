@@ -7,7 +7,7 @@ const companyRouter = Router();
 companyRouter.post(
   "/api/create/company",
   createCompanyValidator,
-  CompanyControlller.store
+  CompanyControlller.create
 );
 companyRouter.put("/api/update/user/:_id", CompanyControlller.update);
 companyRouter.delete("/api/remove/user/:_id", CompanyControlller.remove);

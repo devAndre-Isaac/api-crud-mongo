@@ -5,7 +5,7 @@ import Company from "../database/schemas/company";
 import { getValidData } from "../validation/validatorHandle";
 
 class CompanyController {
-  async store(req: Request, res: Response) {
+  async create(req: Request, res: Response) {
     const repository = getMongoRepository(Company);
     const { cnpj } = req.body;
     const companyExists = await repository.findOne({ where: { cnpj } });
