@@ -5,7 +5,7 @@ import { getValidData } from "../validation/validatorHandle";
 import User from "../database/schemas/user";
 
 class UserController {
-  async store(req: Request, res: Response) {
+  async create(req: Request, res: Response) {
     const repository = getMongoRepository(User);
     const { email, cpf } = req.body;
     const userExists = await repository.findOne({ where: { email, cpf } });
