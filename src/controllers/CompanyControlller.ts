@@ -29,11 +29,10 @@ class CompanyController {
     const idExists = await repository.findOne(_id);
     if (!idExists) {
       return res.send({ Message: "Identification does not exist" });
-    } else {
-      const companyToUpdate = await repository.update(_id, req.body);
-      const companyUpdated = await repository.save(companyToUpdate as any);
-      return res.status(200).json(companyUpdated);
     }
+    const companyToUpdate = await repository.update(_id, req.body);
+    const companyUpdated = await repository.save(companyToUpdate as any);
+    return res.status(200).json(companyUpdated);
   }
 }
 
