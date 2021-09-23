@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import express from "express";
 import "./database/connection";
+
 import { userRouter } from "./routes/user.routes";
 import { companyRouter } from "./routes/company.routes";
 import { authRouter } from "./routes/auth.routes";
